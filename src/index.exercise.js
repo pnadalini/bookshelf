@@ -1,9 +1,45 @@
-// 🐨 you'll need to import react and createRoot from react-dom up here
+import React from 'react'
+import {createRoot} from 'react-dom/client'
+import {Dialog} from '@reach/dialog'
+import LoginForm from 'LoginForm'
+import '@reach/dialog/styles.css'
 
-// 🐨 you'll also need to import the Logo component from './components/logo'
+import {Logo} from './components/logo'
 
-// 🐨 create an App component here and render the logo, the title ("Bookshelf"), a login button, and a register button.
-// 🐨 for fun, you can add event handlers for both buttons to alert that the button was clicked
+const App = () => {
+  const [showLoginDialog, setShowLoginDialog] = React.useState(false)
+  const [showRegisterDialog, setShowRegisterDialog] = React.useState(false)
 
-// 🐨 use createRoot to render the <App /> to the root element
-// 💰 find the root element with: document.getElementById('root')
+  return (
+    <div>
+      <Logo width="80" height="80" />
+      <h1>Bookshelf</h1>
+      <div>
+        <button onClick={() => setShowLoginDialog(true)}>Login</button>
+      </div>
+      <div>
+        <button onClick={() => setShowRegisterDialog(true)}>Register</button>
+      </div>
+      <Dialog aria-label="Login modal" isOpen={showLoginDialog}>
+        <div>
+          <button onClick={() => setShowLoginDialog(false)}>Close</button>
+        </div>
+        <h3>Login</h3>
+        <LoginForm onSubmit={x => console.log('login', x)} buttonText="Login" />
+      </Dialog>
+      <Dialog aria-label="Registration modal" isOpen={showRegisterDialog}>
+        <div>
+          <button onClick={() => setShowRegisterDialog(false)}>Close</button>
+        </div>
+        <h3>Register</h3>
+        <LoginForm
+          onSubmit={x => console.log('register', x)}
+          buttonText="Register"
+        />
+      </Dialog>
+    </div>
+  )
+}
+
+const root = createRoot(document.getElementById('root'))
+root.render(<App />)
