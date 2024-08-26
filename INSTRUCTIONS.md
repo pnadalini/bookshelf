@@ -228,8 +228,8 @@ can use:
 
 ```javascript
 {
-  borderLeft: `5px solid ${colors.indigo}`,
-  background: colors.gray10,
+    borderLeft: `5px solid ${colors.indigo}`,
+    background: colors.gray10,
   ':hover': {
     background: colors.gray20,
   },
