@@ -101,6 +101,7 @@ function FullPageSpinner() {
         justifyContent: 'center',
         alignItems: 'center',
       }}
+      data-testid="full-page-spinner"
     >
       <Spinner />
     </div>
